@@ -1,0 +1,58 @@
+{
+  "name":"WebRTC",
+  "description":"Gaia WebRTC",
+  "type":"certified",
+  "launch_path":"/index.html",
+  "chrome":{"statusbar":"overlap"},
+  "developer":{
+    "name":"The Gaia Team",
+    "url":"https://github.com/mozilla-b2g/gaia"
+  },
+  "permissions":{
+    "idle":{},
+    "time":{},
+    "power":{},
+    "alarms":{},
+    "tctoma":{},
+    "camera":{},
+    "browser":{},
+    "sysprop":{},
+    "storage":{},
+    "softkey":{},
+    "themeable":{},
+    "telephony":{},
+    "systemXHR":{},
+    "geolocation":{},
+    "wifi-manage":{},
+    "permissions":{},
+    "jrdextension":{},
+    "audio-capture":{},
+    "video-capture":{},
+    "webapps-manage":{},
+    "mobileconnection":{},
+    "open-remote-window":{},
+    "desktop-notification":{},
+    "audio-channel-content":{},
+    "settings":{"access":"readwrite"}
+  },
+  "locales":{
+    "en-US":{
+      "name":"WebRTC",
+      "description":"Gaia WebRTC Demo"
+    },
+    "es-US":{
+      "name":"WebRTC",
+      "description":"Gaia WebRTC Demo"
+    }
+  },
+  "default_locale":"en-US",
+  "icons":{
+    "16":"/style/icons/webrtc_16.png",
+    "48":"/style/icons/webrtc_48.png",
+    "56":"/style/icons/webrtc_56.png",
+    "84":"/style/icons/webrtc_84.png"
+  },
+  "theme_color":"#3dcbb3",
+  "orientation":"default",
+  "version":"2.2"
+}

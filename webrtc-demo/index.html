@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <!--<meta name="theme-color" content="transparent">-->
+    <meta name="theme-color" content="#20407b">
+    <title>WebRTC</title>
+    <meta name="defaultLanguage" content="en-US">
+    <meta name="availableLanguages" content="ar, en-US, fr, zh-TW">
+    <!-- Specific style -->
+    <link rel="localization" href="/locales/webrtc-demo.{locale}.properties">
+    <link rel="stylesheet" type="text/css" href="/shared/elements/gaia-theme/gaia-theme.css">
+    <link rel="stylesheet" type="text/css" href="/shared/elements/gaia-theme/gaia-font.css">
+    <link rel="stylesheet" type="text/css" href="/shared/elements/gaia-icons/gaia-icons.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/tabs.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/buttons.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/softkey.css">
+    <!-- Stable Building blocks -->
+    <link rel="stylesheet" type="text/css" href="/shared/style/toaster.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/navigation.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/input_areas.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/action_menu.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/option_menu.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/confirm.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/input_areas.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/switches.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/lists.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/switches.css">
+
+    <link rel="stylesheet" type="text/css" href="style/common.css">
+    <link rel="stylesheet" type="text/css" href="style/composer.css">
+    <link rel="stylesheet" type="text/css" href="style/lists.css">
+    <link rel="stylesheet" type="text/css" href="style/chat.css">
+    <link rel="stylesheet" type="text/css" href="style/message.css">
+    <link rel="stylesheet" type="text/css" href="style/webrtc.css">
+    <!-- Components -->
+    <script defer="" src="/shared/js/l10n.js"></script>
+    <script defer="" src="/shared/js/l10n_date.js"></script>
+    <script defer="" src="/shared/js/hardkey.js"></script>
+    <script defer="" src="/shared/js/toaster.js"></script>
+    <script defer="" src="/shared/js/lazy_loader.js"></script>
+    <script defer="" src="/shared/js/simslot.js"></script>
+    <script defer="" src="/shared/js/simslot_manager.js"></script>
+    <script defer="" src="/shared/js/navigation_manager.js"></script>
+    <!--<script defer src="/shared/js/navigation_handler.js"></script>-->
+    <!-- Web Components -->
+    <script defer="" src="/shared/js/template.js"></script>
+    <script defer="" src="/shared/elements/config.js"></script>
+    <script defer="" src="/shared/js/component_utils.js"></script>
+    <script defer="" src="/shared/elements/gaia_subheader/script.js"></script>
+    <script defer="" src="/shared/elements/gaia-header/dist/gaia-header.js"></script>
+    <script defer="" src="/shared/elements/gaia-progress/dist/gaia-progress.js"></script>
+    <!-- SoftKeybar support -->
+    <script defer="" src="/shared/js/option_menu_helper.js"></script>
+    <script defer="" src="/shared/js/option_menu.js"></script>
+    <script defer="" src="/shared/js/softkey_panel.js"></script>
+    <script defer="" src="/shared/js/softkey_panel_helper.js"></script>
+    <!--gaia tabs-->
+    <script defer="" src="/shared/elements/gaia_tabs/script.js"></script>
+    <script defer="" src="/shared/js/homescreens/confirm_dialog_helper.js"></script>
+
+    <script defer="" src="js/webrtc-constant.js"></script>
+    <script defer="" src="js/webrtc-preferences.js"></script>
+    <script defer="" src="js/webrtc_menu.js"></script>
+    <script defer="" src="js/tab_navigation.js"></script>
+    <script defer="" src="js/utils.js"></script>
+    <script defer="" src="js/time_headers.js"></script>
+    <script defer="" src="js/link_helper.js"></script>
+
+    <script defer="" src="js/sdp.js"></script>
+    <script defer="" src="js/signaling_channel.js"></script>
+    <script defer="" src="js/webrtc_main.js"></script>
+
+    <script defer="" src="js/messages.js"></script>
+    <script defer="" src="js/navigation_handler.js"></script>
+    <script defer="" src="js/startup.js"></script>
+    <meta content="2.2" name="appVersion">
+  </head>
+
+  <body class="theme-settings" role="application">
+    <section id="chat-list" role="region" data-state="active" class="view view-noscroll view-contacts-list">
+      <gaia-header id="chat-list-header">
+        <h1 id="app-title" data-l10n-id="chat">WebRTC Demo</h1>
+      </gaia-header>
+      <gaia-tabs id="root-tab" class="h3" underline="child" selected="0">
+        <button><span data-l10n-id="webrtc-video-chat" id="webrtc-video" class="h3">Video</span></button>
+        <button><span data-l10n-id="webrtc-text-chat" id="webrtc-text" class="h3">Message</span></button>
+      </gaia-tabs>
+      <article id="article-view" class="view-body" role="heading" aria-labelledby="app-title">
+        <div id="groups-container-box">
+          <div id="video-chat-container" class="view-body-inner hide" role="tabpanel" data-tabname="webrtc-video-chat">
+            <section id="quickTip-container-background" data-type="list" class="menu-item">
+              <p data-l10n-id="quick-tip-title">To use webrtc communication:</p>
+              <p data-l10n-id="quick-tip-section1">1. Press Connect (LSK).</p>
+              <p data-l10n-id="quick-tip-section2">2. Enter Options(RSK) to press Start Chat.</p>
+            </section>
+            <section id="video-container-background" class="hide">
+              <div id="remote-container">
+                <video id="remote" autoplay=""></video>
+              </div>
+              <div id="local-container">
+                <video id="local" autoplay=""></video>
+              </div>
+            </section>
+          </div>
+          <div id="text-chat-container" class="view-body-inner hide" role="tabpanel" data-tabname="webrtc-text-chat">
+            <div id="no-message" class="hide">
+              <div class="info" role="alert" tabindex="0">
+                <p data-l10n-id="start-chat" class="p">No messages, yo can start communicating with your friends now.</p>
+              </div>
+            </div>
+            <article id="composer-container" class="view-body">
+              <div class="flex-composer">
+                <div id="messages-container" data-type="list" class="article-list"></div>
+                <form id="messages-compose-form" role="search" class="bottom" data-message-type="sms">
+                  <section class="mms-label-line">
+                    <section class="subject-composer js-subject-composer hide">
+                      <label class="subject-composer-title p-thi" for="subject-composer-input" data-l10n-id="messagesSubjectInput_placeholder">Subject</label>
+                      <input id="subject-composer-input" class="subject-composer-input" maxlength="40" role="textbox" type="text">
+                    </section>
+                  </section>
+                  <section class="message-type-line">
+                    <span class="sms-label p-thi" data-l10n-id="tcl-subject-label">UserName:</span>
+                    <span id="letter-counter" class="letter-counter selector-counter"></span>
+                  </section>
+                  <section class="content-composer">
+                    <div class="messages-attach-container">
+                    </div>
+                    <div class="composer-message-input-container">
+                      <div id="messages-input" data-placeholder="Message" name="message" x-inputmode="input-mode-t9" class="js-l10n-placeholder navigable p-pri placeholder" role="textbox" aria-multiline="true" contenteditable="true"><br></div>
+                    </div>
+                  </section>
+                </form>
+              </div>
+            </article>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="view-contact-form" role="region" class="view view-bottom view-edit-contact fade-in current hide">
+      <section role="region">
+        <gaia-header id="contact-form-header">
+          <h1 id="contact-form-title" data-l10n-id="tcl-preferences">WebRTC Preferences</h1>
+          <button id="save-button" data-l10n-id="done" class="hide">Done</button>
+        </gaia-header>
+        <progress id="throbber" value="0" max="100" class="pack-activity hide"></progress>
+      </section>
+
+      <article class="view-body" role="heading" aria-labelledby="contact-form-title">
+        <div class="view-body-inner">
+          <form id="contact-form" action="#" class="fill-flow">
+            <section class="item first">
+              <div class="item-body-exp">
+                <p class="navigable fillflow-row input-container" role="menuitem" tabindex="1">
+                  <label id="label-given-name" data-l10n-id="serverIp" class="p-sec">Server IP</label>
+                  <input data-field="serverIp" name="serverIp" class="textfield" x-inputmode="input-mode-camelcase" value="" id="serverIp" dir="auto" aria-labelledby="label-given-name" type="text">
+                </p>
+                <p class="navigable fillflow-row input-container" role="menuitem" tabindex="2">
+                  <label data-l10n-id="roomId" class="p-sec">Room ID</label>
+                  <input data-field="roomId" name="roomId" class="textfield" x-inputmode="input-mode-camelcase" value="" id="roomId" dir="auto" type="text">
+                </p>
+                <p class="navigable fillflow-row input-container" role="menuitem" tabindex="3">
+                  <label data-l10n-id="userName" class="p-sec">User Name</label>
+                  <input data-field="userName" name="userName" class="textfield" x-inputmode="verbatim" value="" id="userName" dir="auto" type="text">
+                </p>
+              </div>
+            </section>
+            <ul role="menu">
+              <li class="navigable" tabindex="0" role="menuitem">
+                <label class="pack-checkbox">
+                  <input id="audio_cb" name="webrtc.audio.enabled" checked="" type="checkbox">
+                  <span data-l10n-id="audio_cb">Audio</span>
+                </label>
+              </li>
+              <li class="navigable" tabindex="0" role="menuitem">
+                <label class="pack-checkbox">
+                  <input id="video_cb" name="webrtc.video.enabled" checked="" type="checkbox">
+                  <span data-l10n-id="video_cb">Video</span>
+                </label>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </article>
+    </section>
+
+    <!---  Templates -->
+    <div id="messages-date-group-tmpl">
+      <!--
+      <div id="${id}" class="messages-date-group" data-timestamp="${timestamp}">
+        <header
+          class="messages-date-group-header"
+          data-time-update="${headerTimeUpdate}"
+          data-time="${headerTime}"
+          data-date-only="${headerDateOnly}">
+        </header>
+        <ul class="message-list"></ul>
+      </div>
+      -->
+    </div>
+
+    <div id="messages-message-status-tmpl" class="hide">
+      <!--
+      <div class="message-status" data-l10n-id="${statusL10nId}"
+           aria-label="Message status"
+           role="status">
+      </div>
+      -->
+    </div>
+
+    <div id="messages-message-tmpl" class="hide">
+      <!--
+      <label class="pack-checkbox-large" aria-hidden="true">
+        <input type="checkbox" value="${id}">
+        <span></span>
+      </label>
+      <section class="bubble">
+        <div class="message-content">
+          <h1 class="message-subject">
+            ${subject}
+          </h1>
+          <div class="message-content-body-container">
+            <p class="message-content-body" tabindex="-1">${bodyHTML}</p>
+            ${messageStatusHTML}
+          </div>
+          <div class="message-details p-thi">
+            ${simInformationHTML}
+            <time data-time-update="true" data-time="${timestamp}"></time>
+          </div>
+        </div>
+      </section>
+      -->
+    </div>
+    <!---  Templates -->
+  </body>
+
+</html>

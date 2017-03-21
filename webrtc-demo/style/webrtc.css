@@ -1,0 +1,245 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-color: var(--header-background);*/
+}
+
+html {
+    font-size: 62.5%;
+    overflow: hidden;
+    position: relative;
+    -moz-user-select: none;
+}
+
+body {
+    color: #000;
+    line-height: 2.2rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+h1, h2, h3, h4, h5, h6,
+ul, ol, li, dl, dt, dd, p,
+article, aside, details, figcaption, figure, footer, header, hgroup,
+menu, nav, section, video, audio, canvas, progress, meter, time {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+ul, ol, dl, dt, dd {
+    list-style-type: none;
+}
+
+p, li {
+    word-wrap: break-word;
+}
+
+body > section[role=region] {
+    width: 100%;
+    height: 100%;
+}
+
+#groups-container-box {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.view {
+    position: fixed;
+    overflow: hidden;
+    top: var(--statusbar-height);
+    left: 0px;
+    width: 100%;
+    height: calc(100% - var(--statusbar-height));
+    transform: translate(0px, 0px);
+}
+
+.view-body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    height: calc(100% - var(--statusbar-height) - var(--header-height)
+    - var(--softkeybar-height));
+}
+
+#chat-list .view-body {
+    top: var(--tabbar-height); /* height of gaia tabs */
+    height: calc(100% - var(--statusbar-height) - var(--header-height)
+    - var(--tabbar-height) - var(--softkeybar-height));
+}
+
+#chat-list .view-body.hide-tab {
+    top: 0;
+    height: calc(100% - var(--statusbar-height) - var(--header-height)
+    - var(--softkeybar-height));
+}
+
+gaia-tabs {
+    top: var(--header-height);
+}
+
+gaia-tabs > * {
+    flex: none !important;
+}
+
+gaia-tabs button {
+    width: auto !important;
+}
+
+gaia-tabs button > span {
+    font-size: 14px;
+}
+
+.view-body-inner {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    left: 0;
+    top: 0;
+    bottom: var(--softkeybar-height);
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    -moz-box-sizing: border-box;
+    background: #fff;
+    color: #333;
+    text-align: start;
+    will-change: scroll-position;
+}
+
+:focus {
+    /*background-color: rgba(0,234,255, .4) !important;*/
+    outline: none !important;
+}
+
+.selected {
+    background-color: lightsteelblue
+}
+
+.focus {
+    /*background-color: rgba(0,234,255, .4) !important;*/
+    outline: none !important;
+}
+#text-chat-container > article#composer-container {
+    top: 0;
+    height: 100%
+}
+
+/* Hidden elements */
+.hide, [data-template] {
+    display: none !important;
+}
+
+input, textarea, select, button {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    overflow: auto;
+    height: 4.6rem;
+}
+
+input[type="text"], textarea {
+    line-height: 4rem;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border-color: #7a7a7a;
+}
+
+[contenteditable] {
+    outline: none;
+    word-wrap: break-word;
+}
+/*
+*################################################################
+*/
+#remote-container > video, #local-container > video {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+}
+
+#remote-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    /*border: 1px solid #000;
+    background: none repeat scroll 0% 0% red;*/
+}
+
+#local-container {
+    float: right;
+    height: 30%;
+    width: 30%;
+    z-index: 10;
+    position: relative;
+    /*border: 1px solid #F00;
+    background: none repeat scroll 0% 0% blue;*/
+}
+/*
+*################################################################
+*/
+#view-contact-form form p input:focus {
+    padding: 0px 1rem;
+}
+
+#view-contact-form .input-container,
+#contact-detail .input-container,
+#view-voice-mail .input-container {
+    padding: 0 1rem 0.1rem;
+}
+
+#view-contact-form .focus label,
+#contact-detail .focus label,
+#contact-detail .focus span,
+#view-voice-mail .focus label,
+#view-voice-mail .focus span {
+    color: var(--color-gs00);
+}
+
+#view-contact-form input:focus,
+#contact-detail input:focus,
+#view-voice-mail input:focus {
+    outline: none;
+    border: 0.1rem solid var(--color-gs45);
+    box-shadow: unset;
+    border-color: var(--highlight-color);
+}
+
+/*
+*################################################################
+*/
+
+#video-chat-container section {
+    width: 100%;
+    height: 100%;
+}
+
+section.menu-item {
+    position: static;
+    flex: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+}
+
+section.menu-item > p {
+    position: relative;
+    font-weight: 400;
+    padding: 0.1rem;
+    font-size: 1.5rem;
+    margin: 1px;
+    text-align: left;
+}
